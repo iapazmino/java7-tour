@@ -11,7 +11,6 @@ import java.nio.file.FileSystems;
 import java.nio.file.Path;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -97,8 +96,11 @@ public class TestPath {
 		assertEquals(resourcesPath, joinedPath);
 	}
 
+	/**
+	 * This test failed on windows with the following message:
+	 * java.lang.AssertionError: expected:<..\\..\\..> but was:<..\\..\\..\\>
+	 */
 	@Test
-	@Ignore("Why!? java.lang.AssertionError: expected:<..\\..\\..> but was:<..\\..\\..\\>")
 	public void shouldFindTheWayBackwards() {
 		final Path workingDir = getPath(".").normalize();
 		final Path way = resourcesPath.relativize(workingDir);
