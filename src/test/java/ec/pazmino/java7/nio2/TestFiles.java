@@ -55,13 +55,10 @@ public class TestFiles {
 			return;
 		}
 		try {
-			final Set<PosixFilePermission> perms = PosixFilePermissions
-					.fromString("rw-rw-rw-");
-			final FileAttribute<Set<PosixFilePermission>> attrbs = PosixFilePermissions
-					.asFileAttribute(perms);
+			final Set<PosixFilePermission> perms = PosixFilePermissions.fromString("rw-rw-r--");
+			final FileAttribute<Set<PosixFilePermission>> attrbs = PosixFilePermissions.asFileAttribute(perms);
 			final Path file = Files.createFile(source, attrbs);
-			final Set<PosixFilePermission> permsRead = Files
-					.getPosixFilePermissions(file);
+			final Set<PosixFilePermission> permsRead = Files.getPosixFilePermissions(file);
 			assertEquals(perms, permsRead);
 		} catch (IOException e) {
 			fail(e.getMessage());
