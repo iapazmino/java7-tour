@@ -36,7 +36,7 @@ public class TestPath {
 	@Test
 	public void shouldRecognizeOSFileSystem() {
 		final Path root = resourcesAbsPath.getRoot();
-		assertEquals("C:\\", root.toString());
+		assertRootIs(root.toString());
 	}
 
 	@Test
@@ -126,6 +126,13 @@ public class TestPath {
 
 	private Path getPath(final Path first, final String... more) {
 		return getPath(first.toString(), more);
+	}
+	
+	private void assertRootIs(final String root) {
+		final String os = System.getProperty("os.name");
+		final boolean isWindows = os.matches(".*Windows.*");
+		final String expectedRoot = isWindows ? "C:\\" : "/";
+		assertEquals(expectedRoot, root);
 	}
 
 }
