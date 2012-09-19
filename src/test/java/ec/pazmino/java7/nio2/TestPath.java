@@ -109,7 +109,7 @@ public class TestPath {
 	public void shouldFindTheWayForwards() {
 		final Path workingDir = getPath(".").normalize();
 		final Path way = workingDir.relativize(resourcesPath);
-		assertEquals(getPath("..", "src/test/resources"), way);
+		assertEquals(getPath("src/test/resources"), way);
 	}
 
 	@Test
@@ -127,7 +127,7 @@ public class TestPath {
 	private Path getPath(final Path first, final String... more) {
 		return getPath(first.toString(), more);
 	}
-	
+
 	private void assertRootIs(final String root) {
 		final String os = System.getProperty("os.name");
 		final boolean isWindows = os.matches(".*Windows.*");
